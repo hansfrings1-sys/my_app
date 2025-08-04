@@ -5,7 +5,7 @@ late List<CameraDescription> cameras;
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  
+
   try {
     cameras = await availableCameras();
     print('Câmeras encontradas: ${cameras.length}');
@@ -16,9 +16,11 @@ Future<void> main() async {
     print('Erro ao inicializar câmeras: $e');
     cameras = [];
   }
-  
+
   runApp(TimecardApp());
-}class TimecardApp extends StatelessWidget {
+}
+
+class TimecardApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -65,7 +67,8 @@ class _TimecardHomeState extends State<TimecardHome> {
 
       if (cameras.isEmpty) {
         setState(() {
-          cameraStatus = 'Nenhuma câmera encontrada.\nVerifique se a webcam está conectada.';
+          cameraStatus =
+              'Nenhuma câmera encontrada.\nVerifique se a webcam está conectada.';
         });
         return;
       }
@@ -91,7 +94,8 @@ class _TimecardHomeState extends State<TimecardHome> {
     } catch (e) {
       print('Erro detalhado ao inicializar câmera: $e');
       setState(() {
-        cameraStatus = 'Erro na câmera: ${e.toString()}\n\nTentativas:\n- Verifique permissões\n- Reinicie o app\n- Verifique se outra aplicação está usando a câmera';
+        cameraStatus =
+            'Erro na câmera: ${e.toString()}\n\nTentativas:\n- Verifique permissões\n- Reinicie o app\n- Verifique se outra aplicação está usando a câmera';
       });
     }
   }
@@ -216,7 +220,8 @@ class _TimecardHomeState extends State<TimecardHome> {
                   Navigator.pop(context);
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => EmployeeManagementScreen()),
+                    MaterialPageRoute(
+                        builder: (context) => EmployeeManagementScreen()),
                   );
                 },
               ),
@@ -412,14 +417,30 @@ class _TimecardHomeState extends State<TimecardHome> {
 // Tela de Gerenciamento de Funcionários
 class EmployeeManagementScreen extends StatefulWidget {
   @override
-  _EmployeeManagementScreenState createState() => _EmployeeManagementScreenState();
+  _EmployeeManagementScreenState createState() =>
+      _EmployeeManagementScreenState();
 }
 
 class _EmployeeManagementScreenState extends State<EmployeeManagementScreen> {
   List<Map<String, dynamic>> employees = [
-    {'id': 1, 'name': 'João Silva', 'department': 'TI', 'position': 'Desenvolvedor'},
-    {'id': 2, 'name': 'Maria Santos', 'department': 'Vendas', 'position': 'Vendedora'},
-    {'id': 3, 'name': 'Pedro Oliveira', 'department': 'RH', 'position': 'Analista'},
+    {
+      'id': 1,
+      'name': 'João Silva',
+      'department': 'TI',
+      'position': 'Desenvolvedor'
+    },
+    {
+      'id': 2,
+      'name': 'Maria Santos',
+      'department': 'Vendas',
+      'position': 'Vendedora'
+    },
+    {
+      'id': 3,
+      'name': 'Pedro Oliveira',
+      'department': 'RH',
+      'position': 'Analista'
+    },
   ];
 
   final _nameController = TextEditingController();
@@ -464,8 +485,12 @@ class _EmployeeManagementScreenState extends State<EmployeeManagementScreen> {
                   employees.add({
                     'id': employees.length + 1,
                     'name': _nameController.text,
-                    'department': _departmentController.text.isEmpty ? 'Geral' : _departmentController.text,
-                    'position': _positionController.text.isEmpty ? 'Funcionário' : _positionController.text,
+                    'department': _departmentController.text.isEmpty
+                        ? 'Geral'
+                        : _departmentController.text,
+                    'position': _positionController.text.isEmpty
+                        ? 'Funcionário'
+                        : _positionController.text,
                   });
                 });
                 Navigator.pop(context);
@@ -502,7 +527,8 @@ class _EmployeeManagementScreenState extends State<EmployeeManagementScreen> {
                 foregroundColor: Colors.white,
               ),
               title: Text(employee['name']),
-              subtitle: Text('${employee['position']} - ${employee['department']}'),
+              subtitle:
+                  Text('${employee['position']} - ${employee['department']}'),
               trailing: IconButton(
                 icon: Icon(Icons.delete, color: Colors.red),
                 onPressed: () {
@@ -526,7 +552,8 @@ class _EmployeeManagementScreenState extends State<EmployeeManagementScreen> {
                               SnackBar(content: Text('Funcionário excluído!')),
                             );
                           },
-                          style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
+                          style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.red),
                           child: Text('Excluir'),
                         ),
                       ],
@@ -556,10 +583,30 @@ class ReportsScreen extends StatefulWidget {
 
 class _ReportsScreenState extends State<ReportsScreen> {
   List<Map<String, dynamic>> mockRecords = [
-    {'name': 'João Silva', 'time': '08:30', 'action': 'Entrada', 'date': 'Hoje'},
-    {'name': 'João Silva', 'time': '12:00', 'action': 'Saída Almoço', 'date': 'Hoje'},
-    {'name': 'João Silva', 'time': '13:30', 'action': 'Volta Almoço', 'date': 'Hoje'},
-    {'name': 'Maria Santos', 'time': '09:00', 'action': 'Entrada', 'date': 'Hoje'},
+    {
+      'name': 'João Silva',
+      'time': '08:30',
+      'action': 'Entrada',
+      'date': 'Hoje'
+    },
+    {
+      'name': 'João Silva',
+      'time': '12:00',
+      'action': 'Saída Almoço',
+      'date': 'Hoje'
+    },
+    {
+      'name': 'João Silva',
+      'time': '13:30',
+      'action': 'Volta Almoço',
+      'date': 'Hoje'
+    },
+    {
+      'name': 'Maria Santos',
+      'time': '09:00',
+      'action': 'Entrada',
+      'date': 'Hoje'
+    },
   ];
 
   @override
